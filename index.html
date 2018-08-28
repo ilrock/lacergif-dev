@@ -100,7 +100,7 @@
                 console.log('The request failed!');
             }
             console.log(html);
-            // document.getElementById("gifs-container").innerHTML = html;
+            document.getElementById("gifs-container").innerHTML = html;
         };
 
         xmlHttp.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe", true);
