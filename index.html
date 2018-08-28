@@ -69,44 +69,43 @@
         var searchInput = document.getElementById('search-gif-input');
 
         searchButton.addEventListener('click', function(event){
-            console.log(event);
-            console.log('click');
+            // console.log(event);
+            // console.log('click');
         });
 
         searchInput.addEventListener('keyup', function(event){
-            console.log(event.key);
+            // console.log(event.key);
         });
 
         
-
-        // console.log("Javascript");
-        // var xmlHttp = new XMLHttpRequest();
+        var xmlHttp = new XMLHttpRequest();
         // var html = "";
-        // xmlHttp.onload = function () {
-        //     // Process our return data
-        //     if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
-        //         // What do when the request is successful
-        //         console.log('success!', JSON.parse(xmlHttp.response));
-        //         var gifs = JSON.parse(xmlHttp.response).data;
-        //         gifs.forEach(function(gif){
-        //             var gif = gif.images.downsized_large;
-        //             var gifHtml = "";
-        //             gifHtml+= '<div class="column is-one-quarter">'
-        //             gifHtml+= '<img src='+ gif.url +' height=' + gif.height + ' widgth='+ gif.width +'>'
-        //             gifHtml+= '</div>'
-        //             html += gifHtml;
-        //         });
+        xmlHttp.onload = function () {
+            // Process our return data
+            if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
+                console.log(xmlHttp.response);
+                // What do when the request is successful
+                // console.log('success!', JSON.parse(xmlHttp.response));
+                // var gifs = JSON.parse(xmlHttp.response).data;
+                // gifs.forEach(function(gif){
+                //     var gif = gif.images.downsized_large;
+                //     var gifHtml = "";
+                //     gifHtml+= '<div class="column is-one-quarter">'
+                //     gifHtml+= '<img src='+ gif.url +' height=' + gif.height + ' widgth='+ gif.width +'>'
+                //     gifHtml+= '</div>'
+                //     html += gifHtml;
+                // });
 
-        //     } else {
-        //         // What do when the request fails
-        //         console.log('The request failed!');
-        //     }
+            } else {
+                // What do when the request fails
+                console.log('The request failed!');
+            }
 
-        //     document.getElementById("gifs-container").innerHTML = html;
-        // };
+            // document.getElementById("gifs-container").innerHTML = html;
+        };
 
-        // xmlHttp.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe", true);
-        // xmlHttp.send();
+        xmlHttp.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe", true);
+        xmlHttp.send();
     </script>
 </body>
 
