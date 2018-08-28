@@ -7,13 +7,19 @@
     <title>LacerGif</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+    <style>
+        .red-background-large-text{
+            background-color: red;
+            font-size: 50px;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar is-fixed-top is-warning" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://bulma.io">
-                <strong> LacerGif </strong> 
+                <strong id="app-title"> LacerGif </strong> 
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -61,25 +67,28 @@
         </div>
     </section>
     <script>
-        // var gifContainer = document.getElementById("gifs-container")
-        // var firstFavoriteCategory = document.querySelector('.favorite-category')
+        var gifContainer = document.getElementById("gifs-container")
+        var firstFavoriteCategory = document.querySelector('.favorite-category')
 
-        // console.log(gifContainer);
-        // console.log(firstFavoriteCategory);
+        console.log(gifContainer);
+        console.log(firstFavoriteCategory);
 
-        // console.log("L'id di gifContainer e': " + gifContainer.id);
-        // console.log("Le classi di gifContainer sono: " + gifContainer.className);
+        console.log("L'id di gifContainer e': " + gifContainer.id);
+        console.log("Le classi di gifContainer sono: " + gifContainer.className);
 
-        // firstFavoriteCategory.style.backgroundColor = "red";
-        // firstFavoriteCategory.style.fontSize = "50px";
+        firstFavoriteCategory.style.backgroundColor = "red";
+        firstFavoriteCategory.style.fontSize = "50px";
 
-        var favoriteCategories = document.getElementsByClassName('favorite-category'); // returns an HTML collection
-        var alternativeFavoriteCategories = document.querySelectorAll('.favorite-category'); // returns a node list
+        document.getElementById('app-title').classList.add('red-background-large-text');
+        
+        document.getElementById('app-title').classList.remove('red-background-large-text');
+        // var favoriteCategories = document.getElementsByClassName('favorite-category'); // returns an HTML collection
+        // var alternativeFavoriteCategories = document.querySelectorAll('.favorite-category'); // returns a node list
 
         // HTML collection is live != Node list is static
-        
-        console.log(favoriteCategories); 
-        console.log(alternativeFavoriteCategories);
+
+        // console.log(favoriteCategories); 
+        // console.log(alternativeFavoriteCategories);
 
         
 
