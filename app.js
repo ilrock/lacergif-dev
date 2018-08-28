@@ -6,11 +6,28 @@ $(document).ready(function(){
     var displayedGifs = [];
 
     searchButton.on('click', function(event){
-        console.log(event);
-    });
+        var query = searchInput.val();
+        
+        $.getJSON({
+            url: "http://api.giphy.com/v1/gifs/search?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe&q=" + query,
+            success: function(response){
+                var gifs = response.data;
+                var gifsWithCategory = gifs.map(function(gif){
+                    var gifWithCategory = gif;
+                    gif.category = query;
+                    return gifWithCategory;
+                });
+                displayedGifs = displayedGifs.concat(gifsWithCategory);
+                updateGifs();
+                html = "";
+                html += '<span class="tag is-success is-large favorite-category">';
+                html += query;
+                html += '<button class="delete is-small"></button>';
+                html += '</span>';
 
-    searchInput.on('keyup', function(event){
-        console.log(event);
+                $($('.tags')[0]).append(html);
+            }
+        })
     });
 
     for(var i=0; i<favoriteCategories.length; i++){
