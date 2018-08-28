@@ -18,33 +18,23 @@ $(document).ready(function(){
                     return gifWithCategory;
                 });
                 displayedGifs = displayedGifs.concat(gifsWithCategory);
-                updateGifs();
-                html = "";
-                html += '<span class="tag is-success is-large favorite-category">';
-                html += query;
-                html += '<button class="delete is-small"></button>';
-                html += '</span>';
 
-                $($('.tags')[0]).append(html);
+                updateGifs();
+                addCategoryBadge(query);
+                searchInput.val("");
             }
         })
     });
 
-    for(var i=0; i<favoriteCategories.length; i++){
-        $(favoriteCategories[i]).on('click', function(){
-            console.log("hai cliccato su una categoria");
+    $('body').on('click', '.delete', function(e) {
+        category = $(this).parent().text().trim().toLowerCase();
+        displayedGifs = displayedGifs.filter(function(gif){
+            return gif.category != category;
         });
-        
-        $(favoriteCategories[i]).find('.delete').on('click', function(e){
-            category = $(this).parent().text().trim().toLowerCase();
-            displayedGifs = displayedGifs.filter(function(gif){
-                return gif.category != category;
-            });
-            updateGifs();
-            $(this).parent().remove();
-            e.stopPropagation();
-        });
-    }
+        updateGifs();
+        $(this).parent().remove();
+        e.stopPropagation();
+    });
 
     $.getJSON({
         url: "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe",
@@ -63,6 +53,8 @@ $(document).ready(function(){
     function updateGifs(){
         var html = "";
 
+        displayedGifs = shuffle(displayedGifs);
+
         displayedGifs.forEach(function(gif){
             var gif = gif.images.downsized_large;
             var gifHtml = "";
@@ -74,4 +66,26 @@ $(document).ready(function(){
 
         $("#gifs-container").html(html);
     }
+
+    function addCategoryBadge(category){
+        html = "";
+        html += '<span class="tag is-success is-large favorite-category">';
+        html += category;
+        html += '<button class="delete is-small"></button>';
+        html += '</span>';
+
+        $($('.tags')[0]).append(html);
+    }
+
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
+    }
+    
 });
