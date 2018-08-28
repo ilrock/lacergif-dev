@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LacerGif</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+</head>
+
+<body>
+    <nav class="navbar is-fixed-top is-warning" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <strong> LacerGif </strong> 
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <form class="field has-addons">
+                    <div class="control"><input class="input" type="search" placeholder="Search" name="omni"></div>
+                    <div class="control"><button class="button is-primary search-gif-btn" type="submit">Search</button></div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <section class="section">
+        <div class="container">
+            <div class="tags">
+                <span class="tag is-success is-large favorite-category">
+                    Cats
+                    <button class="delete is-small"></button>
+                </span>
+                <span class="tag is-success is-large favorite-category">
+                    Dogs
+                    <button class="delete is-small"></button>
+                </span>
+                <span class="tag is-success is-large favorite-category">
+                    Doge
+                    <button class="delete is-small favorite-category"></button>
+                </span>
+                <span class="tag is-success is-large favorite-category">
+                    Thanks
+                    <button class="delete is-small"></button>
+                </span>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div id="gifs-container" class="columns is-multiline is-mobile">
+
+            </div>
+        </div>
+    </section>
+    <script>
+        var gifContainer = document.getElementById("gifs-container")
+        var firstFavoriteCategory = document.querySelector('.favorite-category')
+
+        console.log(gifContainer);
+        console.log(firstFavoriteCategory);
+
+        console.log("L'id di gifContainer e': " + gifContainer.id);
+        console.log("Le classi di gifContainer sono: " + gifContainer.className);
+
+        firstFavoriteCategory.style.backgroundColor = "red";
+        firstFavoriteCategory.style.fontSize = "50px";
+
+        // console.log(document.getElementsByClassName('favorite-category'));
+        // console.log("Javascript");
+        // var xmlHttp = new XMLHttpRequest();
+        // var html = "";
+        // xmlHttp.onload = function () {
+        //     // Process our return data
+        //     if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
+        //         // What do when the request is successful
+        //         console.log('success!', JSON.parse(xmlHttp.response));
+        //         var gifs = JSON.parse(xmlHttp.response).data;
+        //         gifs.forEach(function(gif){
+        //             var gif = gif.images.downsized_large;
+        //             var gifHtml = "";
+        //             gifHtml+= '<div class="column is-one-quarter">'
+        //             gifHtml+= '<img src='+ gif.url +' height=' + gif.height + ' widgth='+ gif.width +'>'
+        //             gifHtml+= '</div>'
+        //             html += gifHtml;
+        //         });
+
+        //     } else {
+        //         // What do when the request fails
+        //         console.log('The request failed!');
+        //     }
+
+        //     document.getElementById("gifs-container").innerHTML = html;
+        // };
+
+        // xmlHttp.open("GET", "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe", true);
+        // xmlHttp.send();
+    </script>
+</body>
+
+</html>
