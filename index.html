@@ -67,6 +67,7 @@
     <script>
         var searchButton = document.getElementById('search-gif-btn');
         var searchInput = document.getElementById('search-gif-input');
+        var favoriteCategories = document.getElementsByClassName('favorite-category');
 
         searchButton.addEventListener('click', function(event){
             // console.log(event);
@@ -77,6 +78,16 @@
             // console.log(event.key);
         });
 
+        for(var i=0; i<favoriteCategories.length; i++){
+            favoriteCategories[i].addEventListener('click', function(){
+                console.log("hai cliccato su una categoria");
+            });
+            
+            favoriteCategories[i].querySelector('.delete').addEventListener('click', function(e){
+                console.log("Hai cliccato il bottone delete");
+                e.stopPropagation();
+            });
+        }
         
         var xmlHttp = new XMLHttpRequest();
         var html = "";
@@ -86,7 +97,6 @@
                 // What do when the request is successful
                 // console.log('success!', JSON.parse(xmlHttp.response));
                 var gifs = JSON.parse(xmlHttp.response).data;
-                console.log(gifs);
                 gifs.map(function(gif){
                     var gif = gif.images.downsized_large;
                     var gifHtml = "";
@@ -96,10 +106,8 @@
                     return html += gifHtml;
                 });
             } else {
-                // What do when the request fails
                 console.log('The request failed!');
             }
-            console.log(html);
             document.getElementById("gifs-container").innerHTML = html;
         };
 
