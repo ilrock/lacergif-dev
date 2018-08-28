@@ -3,6 +3,7 @@ $(document).ready(function(){
     var searchButton = $('#search-gif-btn');
     var searchInput = $('#search-gif-input');
     var favoriteCategories = $('.favorite-category');
+    var displayedGifs = [];
 
     searchButton.on('click', function(event){
         console.log(event);
@@ -18,27 +19,42 @@ $(document).ready(function(){
         });
         
         $(favoriteCategories[i]).find('.delete').on('click', function(e){
-            console.log("Hai cliccato il bottone delete");
+            category = $(this).parent().text().trim().toLowerCase();
+            displayedGifs = displayedGifs.filter(function(gif){
+                return gif.category != category;
+            });
+            updateGifs();
+            $(this).parent().remove();
             e.stopPropagation();
         });
     }
 
-    var html = "";
-
     $.getJSON({
         url: "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe",
         success: function(response){
-            console.log(response);
             var gifs = response.data;
-            gifs.forEach(function(gif){
-                var gif = gif.images.downsized_large;
-                var gifHtml = "";
-                gifHtml+= '<div class="column is-one-quarter">'
-                gifHtml+= '<img src='+ gif.url +' height=' + gif.height + ' widgth='+ gif.width +'>'
-                gifHtml+= '</div>'
-                html += gifHtml;
+            var gifsWithCategory = gifs.map(function(gif){
+                var gifWithCategory = gif;
+                gif.category = "trending";
+                return gifWithCategory;
             });
-            $("#gifs-container").html(html);
+            displayedGifs = displayedGifs.concat(gifsWithCategory);
+            updateGifs();
         }
     })
+
+    function updateGifs(){
+        var html = "";
+
+        displayedGifs.forEach(function(gif){
+            var gif = gif.images.downsized_large;
+            var gifHtml = "";
+            gifHtml+= '<div class="column is-one-quarter">'
+            gifHtml+= '<img src='+ gif.url +' height=' + gif.height + ' widgth='+ gif.width +'>'
+            gifHtml+= '</div>'
+            html += gifHtml;
+        });
+
+        $("#gifs-container").html(html);
+    }
 });
