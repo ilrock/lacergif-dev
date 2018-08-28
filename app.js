@@ -9,7 +9,7 @@ $(document).ready(function(){
         var query = searchInput.val();
         
         $.getJSON({
-            url: "http://api.giphy.com/v1/gifs/search?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe&q=" + query,
+            url: "//api.giphy.com/v1/gifs/search?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe&q=" + query,
             success: function(response){
                 var gifs = response.data;
                 var gifsWithCategory = gifs.map(function(gif){
@@ -37,7 +37,7 @@ $(document).ready(function(){
     });
 
     $.getJSON({
-        url: "http://api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe",
+        url: "//api.giphy.com/v1/gifs/trending?api_key=CGGDuOAsCtV9rzV4ONMfLRO33ymDbHWe",
         success: function(response){
             var gifs = response.data;
             var gifsWithCategory = gifs.map(function(gif){
