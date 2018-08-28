@@ -30,7 +30,7 @@
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
-                <div class="control"><input class="input" type="search" placeholder="Search" name="omni"></div>
+                <div class="control"><input id="search-gif-input" class="input" type="search" placeholder="Search" name="omni"></div>
                 <div class="control"><button id="search-gif-btn" class="button is-primary">Search</button></div>
             </div>
         </div>
@@ -66,11 +66,18 @@
     </section>
     <script>
         var searchButton = document.getElementById('search-gif-btn');
+        var searchInput = document.getElementById('search-gif-input');
 
         searchButton.addEventListener('click', function(event){
             console.log(event);
             console.log('click');
         });
+
+        searchInput.addEventListener('keyup', function(event){
+            console.log(event.key);
+        });
+
+        
 
         // console.log("Javascript");
         // var xmlHttp = new XMLHttpRequest();
